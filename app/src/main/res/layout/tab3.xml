@@ -1,28 +1,43 @@
-<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/sample1"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
-    tools:context="com.pleb.decisionsandroid.MainActivity$PlaceholderFragment">
-    <!-- Bottom View Start-->
-    <LinearLayout
-        android:id="@+id/bottom_wrapper"
-        android:layout_width="160dp"
-        android:layout_height="match_parent"
-        android:background="#66ddff00"
-        android:weightSum="1">
-        <!--What you want to show-->
-    </LinearLayout>
-    <!-- Bottom View End-->
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
 
-    <!-- Surface View Start -->
+    <io.saeid.fabloading.LoadingView
+        android:id="@+id/loading_view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleX="4"
+        android:layout_marginBottom="60dp"
+        android:scaleY="4"
+        app:mfl_onclickLoading="true"
+        app:mfl_duration="150"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="100dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAccent"
-        android:padding="10dp">
-        <!--What you want to show in SurfaceView-->
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Flip!"
+            android:id="@+id/b_play"/>
+
     </LinearLayout>
-    <!-- Surface View End -->
-</com.daimajia.swipe.SwipeLayout>
+</LinearLayout>

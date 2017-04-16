@@ -34,5 +34,5 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.4.3'
     compile 'com.afollestad.material-dialogs:commons:0.9.4.3'
     compile 'com.jakewharton:butterknife:8.5.1'
-
+    compile 'io.saeid:fab-loading:1.0.0'
 }
