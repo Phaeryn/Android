@@ -72,7 +72,7 @@ public class NewList extends AppCompatActivity implements ColorChooserDialog.Col
         if(decisionList.getText().toString().isEmpty())
         {
             //Toast User
-            toasty.setText("You need to enter a decision!");
+            toasty.setText("There is no item to remove!");
             toasty.show();
         }
         else
@@ -95,14 +95,14 @@ public class NewList extends AppCompatActivity implements ColorChooserDialog.Col
         if(editListName.getText().toString().isEmpty())
         {
             //Toast User
-            toasty.setText("You need to enter a question!");
+            toasty.setText("You need to enter a list name!");
             toasty.show();
         }
         //There are no decisions
         else if(decisionList.getText().toString().isEmpty())
         {
             //Toast User
-            toasty.setText("You need to enter a decision!");
+            toasty.setText("You need to enter an item");
             toasty.show();
         }
         //We're all good to save
@@ -112,7 +112,7 @@ public class NewList extends AppCompatActivity implements ColorChooserDialog.Col
             Tab1.decisions.addNewDecision(editListName.getText().toString(), addedDecisions);
 
             //Toast User
-            toasty.setText("Decision saved!");
+            toasty.setText("List saved!");
             toasty.show();
 
             //And then Finish
@@ -147,14 +147,14 @@ public class NewList extends AppCompatActivity implements ColorChooserDialog.Col
             if(editListName.getText().toString().isEmpty())
             {
                 //Toast User
-                toasty.setText("You need to enter a question!");
+                toasty.setText("You need to enter a list name!");
                 toasty.show();
             }
             //There are no decisions
             else if(decisionList.getText().toString().isEmpty())
             {
                 //Toast User
-                toasty.setText("You need to enter a decision!");
+                toasty.setText("You need to enter an item!");
                 toasty.show();
             }
             //We're all good to save
@@ -164,7 +164,7 @@ public class NewList extends AppCompatActivity implements ColorChooserDialog.Col
                 Tab1.decisions.addNewDecision(editListName.getText().toString(), addedDecisions);
 
                 //Toast User
-                toasty.setText("Decision saved!");
+                toasty.setText("List saved!");
                 toasty.show();
 
                 //And then Finish
