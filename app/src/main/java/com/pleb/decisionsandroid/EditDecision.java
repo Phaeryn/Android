@@ -26,7 +26,7 @@ public class EditDecision extends Activity
 {
 
     //our views
-    EditText question;
+    EditText listName;
     ListView listView;
     EditText editDecisions;
 
@@ -51,7 +51,7 @@ public class EditDecision extends Activity
         //getActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Initialize our Views
-        question = (EditText) findViewById(R.id.questionedit);
+        listName = (EditText) findViewById(R.id.editList);
         editDecisions = (EditText) findViewById(R.id.addtext);
         //Initilize listview
         listView = (ListView) findViewById(R.id.listView);
@@ -61,7 +61,7 @@ public class EditDecision extends Activity
 
         //Initialize our Array And set up the question
         decisionsArray = Tab1.decisions.getDecisions();
-        question.setText(decisionsArray.get(arrayIndex).get(0));
+        listName.setText(decisionsArray.get(arrayIndex).get(0));
 
         //set up toast
         toasty = Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT);
@@ -78,7 +78,7 @@ public class EditDecision extends Activity
         if(editDecisions.getText().toString().isEmpty())
         {
             //Toast User
-            toasty.setText("You need to enter a decision first!");
+            toasty.setText("You need to enter an item!");
             toasty.show();
         }
         else
@@ -94,6 +94,32 @@ public class EditDecision extends Activity
             createList();
 
         }
+    }
+
+
+    public void saveDecision(View view) {
+
+        //If there is no question
+        if(listName.getText().toString().isEmpty())
+        {
+            //Toast User
+            toasty.setText("You need to enter a list name!");
+            toasty.show();
+        }
+        //We're all good to save
+        else
+        {
+            //Only need to save question since it may be different
+            Tab1.decisions.editDecisionEntry(arrayIndex, 0, listName.getText().toString());
+
+            //Toast User
+            toasty.setText("List saved!");
+            toasty.show();
+
+            //And then Finish
+            finish();
+        }
+
     }
 
     private void createList()
@@ -128,8 +154,8 @@ public class EditDecision extends Activity
         {
             public void onItemClick(AdapterView<?> parent, View v, final int position, long id)
             {
-                delete.setMessage("Delete confirm")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                delete.setMessage("Confirm delete?")
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id)
                             {
                                 //Yes They Would like to Delete
@@ -138,7 +164,7 @@ public class EditDecision extends Activity
                                 if(questions.length <= 1)
                                 {
                                     //Toast
-                                    toasty.setText("Can not remove last decision, you must delete the question entirely!");
+                                    toasty.setText("Cannot delete the last item. Please delete the list if you want to delete it.");
                                     toasty.show();
                                 }
                                 else
@@ -155,7 +181,7 @@ public class EditDecision extends Activity
                                 }
                             }
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // User cancelled the dialog
                             }
@@ -194,17 +220,17 @@ public class EditDecision extends Activity
         else if(id == R.id.finish)
         {
             //If there is no question
-            if(question.getText().toString().isEmpty())
+            if(listName.getText().toString().isEmpty())
             {
                 //Toast User
-                toasty.setText("You need to enter a question!");
+                toasty.setText("You need to enter a list name!");
                 toasty.show();
             }
             //We're all good to save
             else
             {
                 //Only need to save question since it may be different
-                Tab1.decisions.editDecisionEntry(arrayIndex, 0, question.getText().toString());
+                Tab1.decisions.editDecisionEntry(arrayIndex, 0, listName.getText().toString());
 
                 //Toast User
                 toasty.setText("Decision saved!");

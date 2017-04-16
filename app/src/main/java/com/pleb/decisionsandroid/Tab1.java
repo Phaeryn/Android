@@ -4,32 +4,30 @@ package com.pleb.decisionsandroid;
  * Created by Maxime on 11/04/2017.
  */
 
+import android.app.AlertDialog;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.util.Log;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.MenuInflater;
+import android.content.DialogInterface;
+
+
 
 public class Tab1 extends Fragment{
 
@@ -38,6 +36,7 @@ public class Tab1 extends Fragment{
     public static DecisionsFile decisions;
     ArrayList<ArrayList<String>> decisionsArray;
     ListView listView;
+    ListViewAdapter mAdapter;
 
     //How many default remaining Decisions
     //private final int REMAINING_COUNT = 100;
@@ -135,11 +134,129 @@ public class Tab1 extends Fragment{
             Log.d("LIST", questions[i]);
         }
 
+
         //setting up adapter and putting in the list view
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, questions);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, questions);
+        //listView.setAdapter(adapter);
+        ListViewAdapter<String> adapter = new ListViewAdapter<String>(getContext(), R.layout.listview_swipe, R.id.text_data, questions);
         listView.setAdapter(adapter);
 
+        //});
+        //mAdapter.setMode(Attributes.Mode.Multiple);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //((SwipeLayout)(listView.getChildAt(position - listView.getFirstVisiblePosition()))).open(true);
+                Intent intent = new Intent(getActivity().getApplicationContext(), Decision.class);
+                intent.putExtra("INDEX", position);
+                startActivity(intent);
+            }
+        });
+
+
+        listView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.e("ListView", "OnTouch");
+                return false;
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), "OnItemLongClickListener", Toast.LENGTH_SHORT).show();
+
+
+                //have to create final alert dialog builder out here for long click
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                //create another for delete note
+                final AlertDialog.Builder delete = new AlertDialog.Builder(getContext());
+                final int pos = position;
+
+                //setting up alert dialog
+                builder.setMessage("List actions")
+                        .setNegativeButton("EDIT LIST", new DialogInterface.OnClickListener()
+                        {
+                            //Edit Decision
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+
+                                ///Open the Decisions thingy, and give the index to our next activity
+                                Intent intent = new Intent(getActivity().getApplicationContext(), EditDecision.class);
+                                intent.putExtra("INDEX", pos);
+                                startActivity(intent);
+                            }
+                        })
+                        .setPositiveButton("DELETE LIST", new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+                                delete.setMessage("Confirm delete?")
+                                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id)
+                                            {
+                                                //Yes They Would like to Delete
+                                                //Remove the array at the position they clicked
+                                                decisions.removeDecision(pos);
+
+                                                //Recreate the listview and re-get the array and stuff
+                                                reInitialize();
+
+                                                //If above doesnt work, restart the activity, by starting it, and
+                                                //finishing this one
+                                            }
+                                        })
+                                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                // User cancelled the dialog
+                                            }
+                                        });
+                                // Create the Alert and return true for the case
+                                delete.create();
+                                delete.show();
+                            }
+                        });
+                // Create the Alert and return true for the case
+                builder.create();
+                builder.show();
+
+
+                return true;
+            }
+        });
+
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                Log.e("ListView", "onScrollStateChanged");
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                Log.e("Listview", "onScroll");
+            }
+        });
+
+
+        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("ListView", "onItemSelected:" + position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.e("ListView", "onNothingSelected:");
+            }
+        });
+
+
+
+
+        /*
 
         //Our on ItemClick Listener
         OnItemClickListener listclick = new OnItemClickListener()
@@ -215,7 +332,7 @@ public class Tab1 extends Fragment{
             }
         };
 
-        listView.setOnItemLongClickListener(longClick);
+        listView.setOnItemLongClickListener(longClick);*/
 
     }
 

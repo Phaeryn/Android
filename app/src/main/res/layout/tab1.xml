@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="Count"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/notFound"
