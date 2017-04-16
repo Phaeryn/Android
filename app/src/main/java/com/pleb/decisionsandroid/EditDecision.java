@@ -154,7 +154,7 @@ public class EditDecision extends Activity
         {
             public void onItemClick(AdapterView<?> parent, View v, final int position, long id)
             {
-                delete.setMessage("Confirm delete?")
+                delete.setMessage("Delete ?")
                         .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id)
                             {
@@ -176,7 +176,7 @@ public class EditDecision extends Activity
                                     createList();
 
                                     //Toast User
-                                    toasty.setText("Decision removed!");
+                                    toasty.setText("Item removed!");
                                     toasty.show();
                                 }
                             }
@@ -233,7 +233,7 @@ public class EditDecision extends Activity
                 Tab1.decisions.editDecisionEntry(arrayIndex, 0, listName.getText().toString());
 
                 //Toast User
-                toasty.setText("Decision saved!");
+                toasty.setText("Item saved!");
                 toasty.show();
 
                 //And then Finish

@@ -186,7 +186,7 @@ public class NewList extends AppCompatActivity implements ColorChooserDialog.Col
     public void showInputItem(View view) {
 
         new MaterialDialog.Builder(this)
-                .title("Item name")
+                .title("Add item")
                 .inputRangeRes(1, 25, R.color.material_red_400)
                 .input(null, null, new MaterialDialog.InputCallback() {
                     @Override

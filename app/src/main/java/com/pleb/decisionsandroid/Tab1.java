@@ -176,7 +176,7 @@ public class Tab1 extends Fragment{
                 final int pos = position;
 
                 //setting up alert dialog
-                builder.setMessage("List actions")
+                builder.setMessage("Options")
                         .setNegativeButton("EDIT LIST", new DialogInterface.OnClickListener()
                         {
                             //Edit Decision
