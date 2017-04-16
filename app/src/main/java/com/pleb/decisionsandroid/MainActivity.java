@@ -1,5 +1,6 @@
 package com.pleb.decisionsandroid;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,13 +12,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    private FloatingActionButton fab1;
+    private FloatingActionButton fab2;
+    private FloatingActionButton fab3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,19 +48,48 @@ public class MainActivity extends AppCompatActivity {
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.addOnTabSelectedListener(
+                new TabLayout.ViewPagerOnTabSelectedListener(mViewPager) {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        super.onTabSelected(tab);
+                        animateFab(tab.getPosition());
+                    }
+                });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        fab1 = (FloatingActionButton) findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab3 = (FloatingActionButton) findViewById(R.id.fab3);
+
+        fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Adding a new Question!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                addDecision();
+            }
+        });
+
+
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Spiiiiin the bottle", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                Tab2 tab2 = new Tab2();
+                tab2.playBottle();
+
+
+
+
             }
         });
 
@@ -117,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
                     return tab3;
                 default:
                     return null;
-
             }
         }
 
@@ -140,4 +169,39 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    public void addDecision() {
+
+        //Open the new Question Activity
+            Intent intent = new Intent(getApplicationContext(), NewList.class);
+            startActivity(intent);
+    }
+
+    public void animateFab(int position) {
+        switch (position) {
+            case 0:
+                fab1.show();
+                fab2.hide();
+                fab3.hide();
+                break;
+            case 1:
+                fab1.hide();
+                fab2.show();
+                fab3.hide();
+                break;
+            case 2:
+                fab1.hide();
+                fab2.hide();
+                fab3.show();
+                break;
+            default:
+                fab1.show();
+                fab2.hide();
+                fab3.hide();
+                break;
+        }
+    }
+
+
+
 }

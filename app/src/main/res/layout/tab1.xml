@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,13 +6,33 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.pleb.decisionsandroid.MainActivity$PlaceholderFragment">
 
     <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
+        android:id="@+id/remaining"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tab1 Lists"
-        />
+        android:gravity="center_horizontal"
+        android:text="Hello world"
+        android:textSize="25sp" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/notFound"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Not found"
+        android:textSize="25sp" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false">
+
+    </ListView>
+</LinearLayout>

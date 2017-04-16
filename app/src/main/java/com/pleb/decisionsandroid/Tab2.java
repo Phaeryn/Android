@@ -10,6 +10,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.app.Activity;
 
 
 import java.util.Random;
@@ -80,6 +81,7 @@ public class Tab2 extends Fragment {
                 }
             }
         });
+
         ShakeDetector.create(getActivity().getApplicationContext(), new OnShakeListener() {
             @Override
             public void OnShake() {
@@ -87,6 +89,7 @@ public class Tab2 extends Fragment {
                 playBottle();
             }
         });
+
         return rootView;
     }
 

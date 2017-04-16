@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pleb.decisionsandroid">
 
+
+    <!-- Backup and restore -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +23,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".NewList"
+            android:label="New Question" >
+
+            <!-- For icon up navigation -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pleb.decisionsandroid.NewList" />
+        </activity>
+        <activity
+            android:name=".Decision"
+            android:label="Decision" >
+
+            <!-- For icon up navigation -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pleb.decisionsandroid.Decision" />
+        </activity>
+        <activity
+            android:name=".EditDecision"
+            android:label="Edit decision" >
+
+            <!-- For icon up navigation -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pleb.decisionsandroid.EditDecision" />
+        </activity>
+
     </application>
 
 </manifest>
