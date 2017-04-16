@@ -26,6 +26,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.animation.Easing;
 
 public class Decision extends Activity
 {
@@ -46,6 +47,8 @@ public class Decision extends Activity
     long timeCounter;
     //Our random to choose our answer
     Random ran;
+
+    PieChart chart;
 
     String Names[] = {"ZAK&Sev", "Marti", "Lisa", "Svaal", "Robin"};
     float occurrence[] = {2f, 1f, 1f, 1f, 1f};
@@ -80,6 +83,8 @@ public class Decision extends Activity
 
         //Random
         ran = new Random();
+
+        chart = (PieChart) findViewById(R.id.chart);
 
 
         //Other stuff done in on resume
@@ -157,6 +162,7 @@ public class Decision extends Activity
         //Start our roulette thread
         timeCounter = 0;
         handler.postDelayed(roulette, timeCounter);
+        chart.spin(500,0,360,Easing.EasingOption.EaseInOutQuad);
     }
 
     @Override
@@ -200,10 +206,10 @@ public class Decision extends Activity
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         PieData data = new PieData(dataSet);
 
-        PieChart chart = (PieChart) findViewById(R.id.chart);
         chart.setData(data);
         chart.animateY(2000);
         chart.invalidate();
+
     }
 
 }
