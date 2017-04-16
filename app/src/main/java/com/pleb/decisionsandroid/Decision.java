@@ -8,6 +8,7 @@ package com.pleb.decisionsandroid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.jar.Attributes;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.util.Log;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -79,7 +81,6 @@ public class Decision extends Activity
         //Random
         ran = new Random();
 
-        setupPieChart();
 
         //Other stuff done in on resume
     }
@@ -94,10 +95,10 @@ public class Decision extends Activity
         decisionsArray = Tab1.decisions.getDecisions();
 
         //Reset our answer
-        answer.setText("Press decide");
+        answer.setText("Press the button to randomize !");
 
         //Reset our Array, and fill it up -1 because questions
-        answerArray = new String[decisionsArray.get(arrayIndex).size() - 1];
+        answerArray = new String[decisionsArray.get(arrayIndex).size()];
 
         //Start at 1 because question
         for(int ii = 1; ii < answerArray.length; ++ii)
@@ -107,6 +108,8 @@ public class Decision extends Activity
 
         //Reset the question title, since people could edit it in edit decisions
         title.setText(decisionsArray.get(arrayIndex).get(0));
+
+        setupPieChart();
     }
 
     //Runnable for our handler
@@ -143,7 +146,7 @@ public class Decision extends Activity
             {
                 //Cancel all calls
                 handler.removeCallbacks(roulette);
-                answer.setText(answer.getText() + " - Final Decision");
+                answer.setText(answer.getText() + " ! The gods have spoken.");
             }
         }
     };
@@ -189,11 +192,11 @@ public class Decision extends Activity
     private void setupPieChart() {
 
         List<PieEntry> pieEntries = new ArrayList<>();
-        for (int i = 0; i < occurrence.length; i++){
-            pieEntries.add(new PieEntry(occurrence[i], Names[i]));
+        for (int i = 0; i < answerArray.length - 1; i++){
+            pieEntries.add(new PieEntry(1f, answerArray[i]));
         }
 
-        PieDataSet dataSet = new PieDataSet(pieEntries, "Names");
+        PieDataSet dataSet = new PieDataSet(pieEntries, "Items");
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         PieData data = new PieData(dataSet);
 

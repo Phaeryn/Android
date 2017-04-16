@@ -24,7 +24,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:text="Hello world"
-        android:textSize="25sp" />
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/answer"
@@ -33,8 +35,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="Press decide"
-        android:textSize="20sp" />
+        android:text="Push the button"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/decideButton"
