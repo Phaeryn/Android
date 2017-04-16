@@ -159,10 +159,15 @@ public class Decision extends Activity
     //The Decide Button function
     public void decide(View view)
     {
+        final int min = 1200;
+        final int max = 5000;
+        Random rand = new Random();
+        final int random = rand.nextInt((max - min) + 1) + min;
+
         //Start our roulette thread
         timeCounter = 0;
         handler.postDelayed(roulette, timeCounter);
-        chart.spin(500,0,360,Easing.EasingOption.EaseInOutQuad);
+        chart.spin(3000,0,random,Easing.EasingOption.EaseInOutQuad);
     }
 
     @Override
