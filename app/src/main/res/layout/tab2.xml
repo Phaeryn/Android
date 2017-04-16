@@ -11,6 +11,7 @@
         android:id="@+id/iv_sword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:scaleType="centerInside"
         app:srcCompat="@drawable/iv_sword" />
 

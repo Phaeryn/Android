@@ -11,28 +11,18 @@
     tools:context="com.pleb.decisionsandroid.Decision"
     android:weightSum="1">
 
-    <FrameLayout
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:src="@drawable/triangle" />
+
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.56">
-
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/chart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/imageView"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="0.56" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/iv_sword">
-
-            <requestFocus></requestFocus>
-        </ImageView>
-    </FrameLayout>
+        android:layout_height="250dp"
+        android:layout_weight="0.56" />
 
     <TextView
         android:id="@+id/questionTitle"
@@ -52,7 +42,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="Push the button"
+        android:text="Spin the wheel !"
         android:textSize="24sp" />
 
     <Button
@@ -62,6 +52,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:onClick="decide"
-        android:text="Decide" />
+        android:text="Spin" />
 
 </LinearLayout>

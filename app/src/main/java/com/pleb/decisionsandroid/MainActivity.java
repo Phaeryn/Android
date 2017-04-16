@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -72,26 +73,11 @@ public class MainActivity extends AppCompatActivity {
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Adding a new Question!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
                 addDecision();
             }
         });
 
-
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Spiiiiin the bottle", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Tab2 tab2 = new Tab2();
-                tab2.playBottle();
-
-
-
-
-            }
-        });
 
     }
 

@@ -50,9 +50,6 @@ public class Decision extends Activity
 
     PieChart chart;
 
-    String Names[] = {"ZAK&Sev", "Marti", "Lisa", "Svaal", "Robin"};
-    float occurrence[] = {2f, 1f, 1f, 1f, 1f};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -85,6 +82,8 @@ public class Decision extends Activity
         ran = new Random();
 
         chart = (PieChart) findViewById(R.id.chart);
+
+
 
 
         //Other stuff done in on resume
@@ -131,8 +130,7 @@ public class Decision extends Activity
                     //UI
                     //This is setting the text our answer to a randomly selected string from the specified array
                     //Minus one for the question, plus one since 0 is the question index
-                    answer.setText(decisionsArray.get(arrayIndex).
-                            get(ran.nextInt(decisionsArray.get(arrayIndex).size() - 1) + 1));
+                    answer.setText("");
                 }
 
             });
@@ -151,7 +149,7 @@ public class Decision extends Activity
             {
                 //Cancel all calls
                 handler.removeCallbacks(roulette);
-                answer.setText(answer.getText() + " ! The gods have spoken.");
+                answer.setText("");
             }
         }
     };
