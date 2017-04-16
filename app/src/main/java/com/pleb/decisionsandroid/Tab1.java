@@ -40,21 +40,21 @@ public class Tab1 extends Fragment{
     ListView listView;
 
     //How many default remaining Decisions
-    private final int REMAINING_COUNT = 100;
+    //private final int REMAINING_COUNT = 100;
 
     //For remaining Decisions, public static, because we can change it
     //Though, I should probably save the value in preferences
-    int remainingInt;
-    boolean remainingBool;
-    boolean fiveBool;
-    boolean tenBool;
+    //int remainingInt;
+    //boolean remainingBool;
+    //boolean fiveBool;
+    //boolean tenBool;
     SharedPreferences prefs;
 
     //our toast
     Toast toasty;
 
     //Views
-    TextView remaining;
+    TextView count;
     TextView notFound;
 
     @Override
@@ -72,7 +72,7 @@ public class Tab1 extends Fragment{
         toasty = Toast.makeText(getActivity().getApplicationContext(), "", Toast.LENGTH_SHORT);
 
         //View that is often updated
-        remaining = (TextView) rootView.findViewById(R.id.remaining);
+        count = (TextView) rootView.findViewById(R.id.listCount);
         notFound = (TextView) rootView.findViewById(R.id.notFound);
         return rootView;
     }
@@ -95,41 +95,10 @@ public class Tab1 extends Fragment{
         //Get preferences
         prefs = getContext().getSharedPreferences("MyPrefs", 0);
 
-        //Set up our remaining Decisions and remaining bool
-        remainingBool = prefs.getBoolean("REMAININGBOOL", false);
-        fiveBool = prefs.getBoolean("FIVEBOOL", false);
-        tenBool = prefs.getBoolean("TENBOOL", false);
-
-        if(remainingBool)
-        {
-            remaining.setVisibility(View.GONE);
-        }
+        if (decisionsArray.size() == 0)
+            count.setText("Press the '+' button to create a list");
         else
-        {
-            remainingInt = REMAINING_COUNT;
-            //Need to add if we have purchases
-            if(fiveBool)
-            {
-                remainingInt = remainingInt + 5;
-            }
-
-            if(tenBool)
-            {
-                remainingInt = remainingInt + 10;
-            }
-
-            remainingInt = remainingInt - decisionsArray.size();
-
-            //Need to make sure it isn't less than zero
-            if(remainingInt < 0)
-            {
-                remainingInt = 0;
-            }
-
-            //Update view
-            remaining.setVisibility(View.VISIBLE);
-            remaining.setText("Remaining Decisions: " + Integer.toString(remainingInt));
-        }
+            count.setText("Lists created: " + decisionsArray.size() + "");
 
         //Need to check if we have decisions
         if(decisions.isEmpty())

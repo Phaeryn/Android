@@ -31,7 +31,7 @@ public class DecisionsFile implements java.io.Serializable
     public DecisionsFile(Context context)
     {
         //Get our file in which we shall be using throughout our app lifetime
-        DecisionsSave = new File(context.getFilesDir().getAbsolutePath() + "/Decisions.ser");
+        DecisionsSave = new File(context.getFilesDir().getAbsolutePath() + "/Lists.ser");
 
         //Set up our 2d Array, Initialized and reset in getDecisions
         getDecisions();

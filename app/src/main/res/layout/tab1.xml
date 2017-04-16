@@ -10,11 +10,11 @@
     tools:context="com.pleb.decisionsandroid.MainActivity$PlaceholderFragment">
 
     <TextView
-        android:id="@+id/remaining"
+        android:id="@+id/listCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Hello world"
+        android:text="Count"
         android:textSize="25sp" />
 
     <TextView
