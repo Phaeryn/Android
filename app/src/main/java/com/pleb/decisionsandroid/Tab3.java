@@ -35,14 +35,14 @@ public class Tab3 extends Fragment {
         int tails = isLollipop ? R.drawable.tails_2_lollipop : R.drawable.tails;
 
         mLoadingView = (LoadingView) rootView.findViewById(R.id.loading_view);
-        mLoadingView.addAnimation(Color.parseColor("#ff005e"), heads,
+        mLoadingView.addAnimation(Color.parseColor("#ffffff"), heads,
                 LoadingView.FROM_LEFT);
-        mLoadingView.addAnimation(Color.parseColor("#13daed"), tails,
+        mLoadingView.addAnimation(Color.parseColor("#ffffff"), tails,
                 LoadingView.FROM_RIGHT);
 
         mLoadingView = (LoadingView) rootView.findViewById(R.id.loading_view);
-        mLoadingView.addAnimation(Color.parseColor("#13daed"), tails, LoadingView.FROM_RIGHT);
-        mLoadingView.addAnimation(Color.parseColor("#ff005e"), heads, LoadingView.FROM_LEFT);
+        mLoadingView.addAnimation(Color.parseColor("#ffffff"), tails, LoadingView.FROM_RIGHT);
+        mLoadingView.addAnimation(Color.parseColor("#ffffff"), heads, LoadingView.FROM_LEFT);
         b_play.setOnClickListener (new View.OnClickListener() {
             @Override
             public void onClick(View v) {
