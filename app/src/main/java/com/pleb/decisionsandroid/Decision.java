@@ -6,6 +6,7 @@ package com.pleb.decisionsandroid;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import android.app.Activity;
@@ -17,6 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 public class Decision extends Activity
 {
@@ -37,6 +44,9 @@ public class Decision extends Activity
     long timeCounter;
     //Our random to choose our answer
     Random ran;
+
+    String Names[] = {"ZAK&Sev", "Marti", "Lisa", "Svaal", "Robin"};
+    float occurrence[] = {2f, 1f, 1f, 1f, 1f};
 
 
     @Override
@@ -68,6 +78,8 @@ public class Decision extends Activity
 
         //Random
         ran = new Random();
+
+        setupPieChart();
 
         //Other stuff done in on resume
     }
@@ -173,4 +185,22 @@ public class Decision extends Activity
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void setupPieChart() {
+
+        List<PieEntry> pieEntries = new ArrayList<>();
+        for (int i = 0; i < occurrence.length; i++){
+            pieEntries.add(new PieEntry(occurrence[i], Names[i]));
+        }
+
+        PieDataSet dataSet = new PieDataSet(pieEntries, "Names");
+        dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        PieData data = new PieData(dataSet);
+
+        PieChart chart = (PieChart) findViewById(R.id.chart);
+        chart.setData(data);
+        chart.animateY(2000);
+        chart.invalidate();
+    }
+
 }
