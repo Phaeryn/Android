@@ -11,19 +11,6 @@
     tools:context="com.pleb.decisionsandroid.Decision"
     android:weightSum="1">
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom|center_horizontal"
-        android:src="@drawable/triangle" />
-
-
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_weight="0.56" />
-
     <TextView
         android:id="@+id/questionTitle"
         android:layout_width="wrap_content"
@@ -44,6 +31,19 @@
         android:gravity="center"
         android:text="Spin the wheel !"
         android:textSize="24sp" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:src="@drawable/triangle" />
+
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="0.56" />
 
     <Button
         android:id="@+id/decideButton"
