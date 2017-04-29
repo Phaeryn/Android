@@ -1,7 +1,7 @@
 # Random choice maker Android
 
 An app to help you make choices:
-- Create lists with customized items to randomly choose from
+- Create lists with customized items to randomly choose from. Spin the wheel to get the result !
 - Turn an arrow to designate a direction/someone
 - Flip a coin
 
@@ -55,3 +55,11 @@ Program structure:
 |       |       |-- mipmap-xxxhdpi
 
 |       |       |-- values
+
+
+Our group IDs:
+
+-	16129173
+-	16129164
+-	16129120
+-	16129129
